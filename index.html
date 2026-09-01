@@ -5,19 +5,21 @@
   ÉLES INDÍTÁS ELŐTTI TEENDŐK (KISO GROUP weboldal)
   Frissítve: 2026.08.29
 
-  1) Domén csere: a "teszt-domain.hu" placeholder minden előfordulását (canonical link,
-     og:url, JSON-LD @id és url mezői) cseréld a végleges domainre.
-  2) Valós cégadatok: az Impresszum és az Adatkezelési tájékoztató modalokban (és a JSON-LD
-     "address" mezőjében) minden "teszt" jelölésű helyet tölts ki valós adattal:
-     székhely, levelezési cím, adószám, cégjegyzékszám/nyilvántartási szám, tárhelyszolgáltató.
-  3) [KESZ] OG kép: a KISO GROUP logo lett feltöltve 1200x630-as méretben a GitHub repóba
-     (og-image.png), az og:image/twitter:image erre mutat. Ha még változtok domaint,
-     ellenőrizd, hogy a kép URL-je is friss marad-e.
-  4) robots.txt és sitemap.xml: külön fájlok, a domain gyökerében kell elhelyezni, csak
+  [KÉSZ] Cégadatok: Kiss Imre egyéni vállalkozó (KISO GROUP márkanév alatt), székhely
+        4132 Tépe, Dózsa György utca 56., adószám 92289392-2-35, nyilvántartási szám
+        62685214 - beírva az Impresszumba, az Adatkezelési tájékoztatóba és a JSON-LD-be.
+  [KÉSZ] OG kép: a KISO GROUP logo 1200x630-as változata feltöltve a GitHub repóba
+        (og-image.png), az og:image/twitter:image erre mutat.
+  [KÉSZ] Tárhelyszolgáltató: GitHub, Inc. (GitHub Pages) - beírva az Impresszumba.
+
+  1) Még hátra van: Domén csere - a "teszt-domain.hu" placeholder minden előfordulását
+     (canonical link, og:url, JSON-LD @id és url mezői) cseréld a végleges domainre, amint
+     az DNS-ben él.
+  2) robots.txt és sitemap.xml: külön fájlok, a domain gyökerében kell elhelyezni, csak
      éles hosting esetén tudjuk beállítani.
-  5) Jogi ellenőrzés: az Adatkezelési tájékoztató és az Impresszum végleges szövegét
-     érdemes jogásszal/könyvelővel átnézetni indítás előtt.
-  6) Opcionális: ÁSZF hozzáadása, ha a cég úgy dönt (nem webshop, jelenleg nem kötelező).
+  3) Jogi ellenőrzés: az Adatkezelési tájékoztató és az Impresszum végleges szövegét
+     érdemes ügyvéddel/könyvelővel átnézetni indítás előtt.
+  4) Opcionális: ÁSZF hozzáadása, ha a cég úgy dönt (nem webshop, jelenleg nem kötelező).
 -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -50,6 +52,7 @@
     "@type": "HomeAndConstructionBusiness",
     "@id": "https://teszt-domain.hu/#organization",
     "name": "KISO GROUP",
+    "legalName": "Kiss Imre e.v.",
     "description": "Nyílászárók értékesítése, egyedi és szabvány méretű gyártása, redőny- és ablakpárkány-beépítés, valamint professzionális kivitelezés.",
     "url": "https://teszt-domain.hu/",
     "telephone": [
@@ -64,9 +67,9 @@
     ],
     "address": {
         "@type": "PostalAddress",
-        "streetAddress": "teszt",
-        "addressLocality": "teszt",
-        "postalCode": "teszt",
+        "streetAddress": "Dózsa György utca 56.",
+        "addressLocality": "Tépe",
+        "postalCode": "4132",
         "addressCountry": "HU"
     }
 }
@@ -774,15 +777,15 @@ a{text-decoration:none;color:inherit}
     <div class="legal-modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-impresszum-title">
       <button type="button" class="legal-modal-close" data-modal-close aria-label="Bezárás">&times;</button>
       <h2 id="modal-impresszum-title">Impresszum</h2>
-      <p class="legal-modal-updated">Utolsó frissítés: 2026. augusztus 29. — a <span class="legal-placeholder">teszt</span> jelölésű mezőket éles indítás előtt valós cégadatokkal kell kitölteni.</p>
+      <p class="legal-modal-updated">Utolsó frissítés: 2026. augusztus 29.</p>
 
       <h3>Szolgáltató</h3>
       <p>
-        Név: KISO GROUP <span class="legal-placeholder">teszt</span><br>
-        Székhely: <span class="legal-placeholder">teszt</span><br>
-        Levelezési cím: <span class="legal-placeholder">teszt</span><br>
-        Adószám: <span class="legal-placeholder">teszt</span><br>
-        Cégjegyzékszám / nyilvántartási szám: <span class="legal-placeholder">teszt</span>
+        Név: Kiss Imre egyéni vállalkozó (KISO GROUP márkanév alatt)<br>
+        Székhely: 4132 Tépe, Dózsa György utca 56.<br>
+        Levelezési cím: 4132 Tépe, Dózsa György utca 56.<br>
+        Adószám: 92289392-2-35<br>
+        Egyéni vállalkozói nyilvántartási szám: 62685214
       </p>
 
       <h3>Képviseli</h3>
@@ -796,7 +799,7 @@ a{text-decoration:none;color:inherit}
       </p>
 
       <h3>Tárhelyszolgáltató</h3>
-      <p><span class="legal-placeholder">teszt</span></p>
+      <p>GitHub, Inc. (GitHub Pages)</p>
 
       <h3>Tevékenységi / szolgáltatási terület</h3>
       <p>Hajdú-Bihar vármegye, Szabolcs-Szatmár-Bereg vármegye</p>
@@ -811,10 +814,10 @@ a{text-decoration:none;color:inherit}
     <div class="legal-modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-privacy-title">
       <button type="button" class="legal-modal-close" data-modal-close aria-label="Bezárás">&times;</button>
       <h2 id="modal-privacy-title">Adatkezelési tájékoztató</h2>
-      <p class="legal-modal-updated">Utolsó frissítés: 2026. augusztus 29. — a <span class="legal-placeholder">teszt</span> jelölésű mezőket éles indítás előtt valós adatokkal kell kitölteni, és a végleges szöveget érdemes jogi szakértővel átnézetni.</p>
+      <p class="legal-modal-updated">Utolsó frissítés: 2026. augusztus 29. — a végleges szöveget érdemes jogi szakértővel átnézetni éles indítás előtt.</p>
 
       <h3>1. Az adatkezelő</h3>
-      <p>KISO GROUP (<span class="legal-placeholder">teszt</span>, székhely: <span class="legal-placeholder">teszt</span>, adószám: <span class="legal-placeholder">teszt</span>) — a továbbiakban: Adatkezelő. Elérhetőség: <a href="mailto:kisogroup.info@gmail.com">kisogroup.info@gmail.com</a>.</p>
+      <p>Kiss Imre egyéni vállalkozó (KISO GROUP márkanév alatt, székhely: 4132 Tépe, Dózsa György utca 56., adószám: 92289392-2-35) — a továbbiakban: Adatkezelő. Elérhetőség: <a href="mailto:kisogroup.info@gmail.com">kisogroup.info@gmail.com</a>.</p>
 
       <h3>2. A kezelt adatok köre</h3>
       <ul>
