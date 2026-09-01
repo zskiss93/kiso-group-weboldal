@@ -11,29 +11,28 @@
   [KÉSZ] OG kép: a KISO GROUP logo 1200x630-as változata feltöltve a GitHub repóba
         (og-image.png), az og:image/twitter:image erre mutat.
   [KÉSZ] Tárhelyszolgáltató: GitHub, Inc. (GitHub Pages) - beírva az Impresszumba.
+  [KÉSZ] Domén: kisogroup.hu beírva mindenhová (canonical, og:url, JSON-LD @id/url).
+        A DNS átállítás + GitHub Pages custom domain beállítás folyamatban/megtörtént -
+        DNS propagáció (néhány óra) után a kisogroup.hu már a saját domainen él.
 
-  1) Még hátra van: Domén csere - a "teszt-domain.hu" placeholder minden előfordulását
-     (canonical link, og:url, JSON-LD @id és url mezői) cseréld a végleges domainre, amint
-     az DNS-ben él.
-  2) robots.txt és sitemap.xml: külön fájlok, a domain gyökerében kell elhelyezni, csak
-     éles hosting esetén tudjuk beállítani.
-  3) Jogi ellenőrzés: az Adatkezelési tájékoztató és az Impresszum végleges szövegét
+  1) robots.txt és sitemap.xml: a kisogroup.hu gyökerébe kell tenni, amint a DNS él.
+  2) Jogi ellenőrzés: az Adatkezelési tájékoztató és az Impresszum végleges szövegét
      érdemes ügyvéddel/könyvelővel átnézetni indítás előtt.
-  4) Opcionális: ÁSZF hozzáadása, ha a cég úgy dönt (nem webshop, jelenleg nem kötelező).
+  3) Opcionális: ÁSZF hozzáadása, ha a cég úgy dönt (nem webshop, jelenleg nem kötelező).
 -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#15100c" />
   <!-- TODO: cseréld a végleges doménre élesítéskor -->
-  <link rel="canonical" href="https://teszt-domain.hu/" />
+  <link rel="canonical" href="https://kisogroup.hu/" />
   <meta name="geo.region" content="HU-HB" />
   <meta name="geo.placename" content="Hajdú-Bihar vármegye, Szabolcs-Szatmár-Bereg vármegye" />
   <title>KISO GROUP | Prémium nyílászárók, redőny és beépítés | Hajdú-Bihar, Szabolcs-Szatmár-Bereg</title>
   <meta name="description" content="Nyílászáró csere, redőny- és ablakpárkány-beépítés Hajdú-Bihar és Szabolcs-Szatmár-Bereg megyében. Egyedi gyártás, 20+ év tapasztalat, ingyenes helyszíni felmérés." />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="KISO GROUP" />
-  <meta property="og:url" content="https://teszt-domain.hu/" />
+  <meta property="og:url" content="https://kisogroup.hu/" />
   <meta property="og:title" content="KISO GROUP | Prémium nyílászárók, redőny és beépítés | Hajdú-Bihar, Szabolcs-Szatmár-Bereg" />
   <meta property="og:description" content="Nyílászáró csere, redőny- és ablakpárkány-beépítés Hajdú-Bihar és Szabolcs-Szatmár-Bereg megyében. Egyedi gyártás, 20+ év tapasztalat, ingyenes helyszíni felmérés." />
   <meta property="og:image" content="https://zskiss93.github.io/kiso-group-weboldal/og-image.png" />
@@ -50,11 +49,11 @@
   {
     "@context": "https://schema.org",
     "@type": "HomeAndConstructionBusiness",
-    "@id": "https://teszt-domain.hu/#organization",
+    "@id": "https://kisogroup.hu/#organization",
     "name": "KISO GROUP",
     "legalName": "Kiss Imre e.v.",
     "description": "Nyílászárók értékesítése, egyedi és szabvány méretű gyártása, redőny- és ablakpárkány-beépítés, valamint professzionális kivitelezés.",
-    "url": "https://teszt-domain.hu/",
+    "url": "https://kisogroup.hu/",
     "telephone": [
         "+36309997269",
         "+36306012352"
