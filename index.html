@@ -305,6 +305,11 @@ a{text-decoration:none;color:inherit}
 .legal-modal-panel ul{margin:6px 0;padding-left:20px}
 .legal-modal-panel strong{color:var(--ink)}
 .legal-placeholder{background:#fff4e9;border:1px dashed var(--copper-2);color:var(--copper-3);padding:2px 6px;font-weight:700;border-radius:2px}
+.thanks-panel{max-width:420px;text-align:center;padding:48px 40px}
+.thanks-icon{width:56px;height:56px;margin:0 auto 20px;border-radius:50%;background:var(--copper-grad);color:var(--black);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900}
+.thanks-panel h2{margin:0 0 10px}
+.thanks-panel p{margin:0;color:var(--ink-muted)}
+
 .footer-legal{display:flex;gap:18px;flex-wrap:wrap}
 .footer-legal a{font-size:12px;color:#9a8f80}
 .footer-legal a:hover{color:#fff}
@@ -719,7 +724,7 @@ a{text-decoration:none;color:inherit}
             <textarea name="message" rows="5" placeholder="Darabszám, méretek, elképzelés..."></textarea>
           </label>
 
-          <p class="photo-hint">Fotókat vagy tervrajzot a küldés után megnyíló e-mailhez tud csatolni.</p>
+          <p class="photo-hint">Fotókat vagy tervrajzot külön e-mailben is elküldhet nekünk: <a href="mailto:kisogroup.info@gmail.com">kisogroup.info@gmail.com</a></p>
 
           <label class="consent-check">
             <input type="checkbox" name="consent" required>
@@ -865,6 +870,16 @@ a{text-decoration:none;color:inherit}
     </div>
   </div>
 
+  <div class="legal-modal" id="modal-thanks" aria-hidden="true">
+    <div class="legal-modal-backdrop" data-modal-close></div>
+    <div class="legal-modal-panel thanks-panel" role="dialog" aria-modal="true" aria-labelledby="modal-thanks-title">
+      <button type="button" class="legal-modal-close" data-modal-close aria-label="Bezárás">&times;</button>
+      <div class="thanks-icon" aria-hidden="true">&#10003;</div>
+      <h2 id="modal-thanks-title">Köszönjük ajánlatkérését!</h2>
+      <p>Hamarosan jelentkezünk a megadott elérhetőségek egyikén.</p>
+    </div>
+  </div>
+
   <div class="mobile-actionbar">
     <a href="tel:+36309997269">Hívás</a>
     <a href="#ajanlat">Ajánlatkérés</a>
@@ -916,6 +931,8 @@ a{text-decoration:none;color:inherit}
     });
     document.body.style.overflow = '';
   }
+  window.openSiteModal = openModal;
+  window.closeSiteModals = closeAll;
 
   openers.forEach(function(a){
     a.addEventListener('click', function(e){
@@ -941,23 +958,43 @@ function handleSubmit(e){
   var type = f.type.value;
   var message = f.message.value.trim();
 
-  var subject = 'Ajánlatkérés – ' + (name || 'Új érdeklődő');
-  var lines = [
-    'Név: ' + name,
-    'Telefonszám: ' + phone
-  ];
-  if(email) lines.push('E-mail: ' + email);
-  if(city) lines.push('Település: ' + city);
-  lines.push('Igény: ' + type);
-  if(message) lines.push('', 'Projekt leírása:', message);
+  var btn = f.querySelector('button[type="submit"]');
+  var btnLabel = btn ? btn.textContent : '';
+  var msg = document.getElementById('form-message');
+  if(msg) msg.textContent = '';
+  if(btn){ btn.disabled = true; btn.textContent = 'Küldés...'; }
 
-  var mailto = 'mailto:kisogroup.info@gmail.com'
-    + '?subject=' + encodeURIComponent(subject)
-    + '&body=' + encodeURIComponent(lines.join('\n'));
+  var data = new FormData();
+  data.append('Név', name);
+  data.append('Telefonszám', phone);
+  if(email) data.append('E-mail', email);
+  if(city) data.append('Település', city);
+  data.append('Igény', type);
+  if(message) data.append('Projekt leírása', message);
+  data.append('_subject', 'Ajánlatkérés – ' + (name || 'Új érdeklődő'));
+  data.append('_template', 'table');
+  data.append('_captcha', 'false');
 
-  window.location.href = mailto;
-  document.getElementById('form-message').textContent =
-    'Megnyitjuk az e-mail programját az üzenet elküldéséhez. Fotókat, tervrajzot csatolhat közvetlenül az e-mailben.';
+  fetch('https://formsubmit.co/ajax/kisogroup.info@gmail.com', {
+    method: 'POST',
+    headers: { 'Accept': 'application/json' },
+    body: data
+  }).then(function(res){
+    if(!res.ok) throw new Error('send failed');
+    return res.json();
+  }).then(function(result){
+    if(btn){ btn.disabled = false; btn.textContent = btnLabel; }
+    if(result && String(result.success) === 'false'){
+      if(msg) msg.textContent = 'Hiba történt a küldés során. Kérjük, próbálja újra, vagy hívjon minket telefonon.';
+      return;
+    }
+    f.reset();
+    if(window.openSiteModal) window.openSiteModal('modal-thanks');
+  }).catch(function(){
+    if(btn){ btn.disabled = false; btn.textContent = btnLabel; }
+    if(msg) msg.textContent = 'Hiba történt a küldés során. Kérjük, próbálja újra, vagy hívjon minket telefonon.';
+  });
+
   return false;
 }
 
